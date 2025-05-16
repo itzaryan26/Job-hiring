@@ -1,28 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="/">
-            <i class="fas fa-briefcase mr-2"></i>Jobify
-        </a>
+        <a class="navbar-brand" href="/"><i class="fas fa-briefcase mr-2"></i>Jobify</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/jobs">
-                        <i class="fas fa-search mr-1"></i>Find Jobs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/jobs/create">
-                        <i class="fas fa-plus-circle mr-1"></i>Post Job
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/applications">
-                        <i class="fas fa-file-alt mr-1"></i>Applications
-                    </a>
-                </li>
+                <% if (!user) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" data-toggle="dropdown">
+                            Register
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/auth/company/register">As Company</a>
+                            <a class="dropdown-item" href="/auth/candidate/register">As Candidate</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                <% } else if (user.role === 'company') { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs/manage">Manage Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs/create">Post Job</a>
+                    </li>
+                <% } else if (user.role === 'candidate') { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs">Find Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/applications/my">My Applications</a>
+                    </li>
+                <% } %>
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                <% } %>
             </ul>
         </div>
     </div>

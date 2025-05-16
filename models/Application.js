@@ -34,6 +34,11 @@ const applicationSchema = new mongoose.Schema({
   appliedAt: {
     type: Date,
     default: Date.now
+  },
+  candidate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
