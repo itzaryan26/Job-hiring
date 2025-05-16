@@ -1,0 +1,22 @@
+{
+  "name": "jobify",
+  "version": "1.0.0",
+  "description": "A job hiring platform using Node.js, Express, EJS, and MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "ejs": "^3.1.9",
+    "body-parser": "^1.20.2",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

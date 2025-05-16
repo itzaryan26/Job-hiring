@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Available Jobs</h2>
+        <a href="/jobs/create" class="btn btn-primary mb-3">Post New Job</a>
+        
+        <% if (typeof jobs !== 'undefined' && jobs.length > 0) { %>
+            <% jobs.forEach(job => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= job.title %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= job.company %> - <%= job.location %></h6>
+                        <p class="card-text"><%= job.description.substring(0, 200) %>...</p>
+                        <a href="/jobs/<%= job._id %>" class="btn btn-info">View Details</a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No jobs available at the moment.</p>
+        <% } %>
+    </div>
+</div>

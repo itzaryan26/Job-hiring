@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2>Edit Job</h2>
+        <form action="/jobs/<%= job._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+                <label>Job Title</label>
+                <input type="text" name="title" class="form-control" value="<%= job.title %>" required>
+            </div>
+            <div class="form-group">
+                <label>Company</label>
+                <input type="text" name="company" class="form-control" value="<%= job.company %>" required>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" name="location" class="form-control" value="<%= job.location %>" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" class="form-control" rows="5" required><%= job.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label>Requirements</label>
+                <textarea name="requirements" class="form-control" rows="3" required><%= job.requirements %></textarea>
+            </div>
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="text" name="salary" class="form-control" value="<%= job.salary %>" required>
+            </div>
+            <div class="form-group">
+                <label>Job Type</label>
+                <select name="type" class="form-control" required>
+                    <option value="Full-time" <%= job.type === 'Full-time' ? 'selected' : '' %>>Full-time</option>
+                    <option value="Part-time" <%= job.type === 'Part-time' ? 'selected' : '' %>>Part-time</option>
+                    <option value="Contract" <%= job.type === 'Contract' ? 'selected' : '' %>>Contract</option>
+                    <option value="Internship" <%= job.type === 'Internship' ? 'selected' : '' %>>Internship</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Job</button>
+        </form>
+    </div>
+</div>

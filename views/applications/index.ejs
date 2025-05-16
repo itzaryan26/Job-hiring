@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Job Applications</h2>
+        
+        <% if (typeof applications !== 'undefined' && applications.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Applicant</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Applied Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% applications.forEach(application => { %>
+                            <tr>
+                                <td><%= application.job.title %></td>
+                                <td><%= application.applicantName %></td>
+                                <td><%= application.email %></td>
+                                <td><span class="badge badge-<%= application.status === 'Pending' ? 'warning' : application.status === 'Accepted' ? 'success' : 'danger' %>">
+                                    <%= application.status %>
+                                </span></td>
+                                <td><%= new Date(application.appliedAt).toLocaleDateString() %></td>
+                                <td>
+                                    <a href="/applications/<%= application._id %>" class="btn btn-sm btn-info">View</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p>No applications found.</p>
+        <% } %>
+    </div>
+</div>
